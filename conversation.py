@@ -21,6 +21,9 @@ from audio import tts_google, tts_local, pull_latest, sr_google, audio_state, st
 # Import plugins
 # TODO make a better system for plugins
 from plugins import random_greeting
+from plugins import spacy
+from plugins import genrepor
+from plugins import genereporanoni
 # TODO make a better system for filters
 from filters import *
 
@@ -205,6 +208,7 @@ class Conversation:
         try:
             if args[0] in self.contexts:
                 self.current_context=self.contexts[args[0]]
+                print("-------",self.contexts)
                 slots_tmp=OrderedDict(self.current_context.slots)
                 slots_tmp_ = self.slots
                 self.slots=self.current_context.slots

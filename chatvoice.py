@@ -12,6 +12,7 @@ import os.path
 
 # local imports
 import conversation
+import spacy
 from audio import audio_connect, audio_close, audio_devices, set_audio_dirname
 
 
