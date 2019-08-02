@@ -1,0 +1,52 @@
+﻿# Conversacion de Apoyo Pasaporte
+
+settings:
+    name: Tramibot
+
+kb: kb.db
+
+strategies:
+
+    menu:
+        - say "Porfavor dime lo que quieres saber, te puedo proporcionar la siguiente informacion; Requisitos, Precios o informacion de citas"
+        - input opcion | asign requisitos:req precios:prec citas:cit
+        - if opcion == "req" solve requisit
+        - if opcion == "prec" solve prices
+        - if opcion == "cit" solve cites
+        - empty_slot opcion
+        - say "¿Te puedo ayudar en algo mas?"
+        - input status | yesno
+    name:
+        - say "Hola Soy Tramibot, el asistente para tramitar pasaporte, ¿cual es tu nombre?"
+        - input name
+        - remember name
+        - say "Recuerda que para tramitar tu pasaporte debes contar con todo los requisitos asi como el pago emitido en la sucursal bancaria, y asi poder asistir a tu cita"
+    
+    requisit: 
+        - say "para darte los requisitos me podrias decir, ¿es primera vez el tramite?"
+        - input re | yesno
+        - if re solve presentreq
+        - if not re solve renova
+    presentreq:
+        - say "los requistos a presentar son los siguientes, para mayores de edad presentar acta de nacimiento actualizada, credencial de elector, comprobante de       domicilio y acta de matrimonio (opcional, si se encuentra casado) y Para menores de edad; acta de nacimiento, identificaciòn de la escuela o constanacia del grado de estudio (si es menor de 6 años una constancia medica) y permiso OP7. Asimimos para ambos caso presentar el comprobante de pago"
+    renova: 
+        - say "Los requisitos para renovacion son, para mayores de edad presentar credencial de elector, pasaporte a renovar y acta de matrimonio (opcional, si se encuentra casado) y Para menores de edad presentar acta de nacimiento, dentificaciòn de la escuela o constanacia del grado de estudio (si es menor de 6 años una constancia medica),  permiso OP7 y pasaporte anterior. Asimimos para ambos caso presentar el comprobante de pago "
+    prices: 
+        - say " Los precios varian de acuerdo a la vigencia, los cuales son los siguientes:"
+        - say " 1 años 610 pesos"
+        - say " 3 años 1265 pesos"
+        - say " 6 años 1735 pesos"
+
+    cites:
+        -say "Para agendar tu cita puedes marcar al 01 800 8010 773 ò  ingresar a la pagina https://citas.sre.gob.mx"
+
+    adios: 
+        - say "Nos vemos {}".format(name)
+
+
+script:
+    - solve name
+    - say "¿Deseas que te ayude en algo el dìa de hoy {}?".format(name)
+    - input status | yesno
+    - while status solve menu
+    - solve adios

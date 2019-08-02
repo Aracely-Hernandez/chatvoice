@@ -1,0 +1,35 @@
+﻿#Seccion de historia
+
+
+conversations:
+        - 'Objetos_robados.yaml' 
+
+kb: kb.db
+
+strategies:
+    history:
+        - say "¿Que te parece si me cuentas lo que sucedio?" 
+        - input suceso
+        - say "¿Donde fue que sucedio?"
+        - input where
+        - say "¿cual es el nombre del Municipio donde sucedio?"
+        - input municipio
+        - say "¿Pudiste observar el nombre de la calle donde sucedio?"
+        - input calle
+        - say "¿A que hora sucedieron los hechos?"
+        - input hora
+    otroshechos:
+        - say "¿Que mas sucedio?"
+        - input otrahistoria
+    terminar:
+        - say "Okay dejame lo apunto"
+    final: 
+        - say "Gracias por contarme lo sucedido"
+script:
+    - solve history
+    - say "¿Tienes algun otro hecho que me quieras contar?"
+    - input otrohecho
+    - if otrohecho == "si" solve otroshechos
+    - if otrohecho == "no" solve terminar
+    - solve final
+    - solve Objetos_robados

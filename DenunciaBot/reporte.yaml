@@ -1,0 +1,43 @@
+﻿#Generador de reporte
+
+plugins:
+    - genrepor
+    - genereporanoni
+strategies:
+   publica:
+    - execute self.slots['nombre']=self.contexts['denuncia_datos'].slots['nombre']
+    - execute self.slots['ap_pat']=self.contexts['denuncia_datos'].slots['ap_pat']
+    - execute self.slots['ap_mat']=self.contexts['denuncia_datos'].slots['ap_mat']
+    - execute self.slots['direccion']=self.contexts['denuncia_datos'].slots['direccion']
+    - execute self.slots['edad']=self.contexts['denuncia_datos'].slots['edad']
+    - execute self.slots['telefono']=self.contexts['denuncia_datos'].slots['telefono']
+    - execute self.slots['sexo']=self.contexts['denuncia_datos'].slots['sexo']
+    - execute self.slots['ocupacion']=self.contexts['denuncia_datos'].slots['ocupacion']
+    - execute self.slots['suceso']=self.contexts['Historia'].slots['suceso']
+    - execute self.slots['where']=self.contexts['Historia'].slots['where']
+    - execute self.slots['municipio']=self.contexts['Historia'].slots['municipio']
+    - execute self.slots['calle']=self.contexts['Historia'].slots['calle']
+    - execute self.slots['hora']=self.contexts['Historia'].slots['hora']
+    - execute self.slots['robados']=self.contexts['Objetos_robados'].slots['robados']
+    - say "Gracias por contarme todo, ahora generare el reporte de denuncia..."
+    - genrepor.execute(nombre,ap_pat,ap_mat,direccion,edad,telefono,sexo,ocupacion,suceso,where,municipio,calle,hora,robados)
+    - say "El reporte ya fue generado"
+   anonima:
+    - execute self.slots['suceso']=self.contexts['Historia'].slots['suceso']
+    - execute self.slots['where']=self.contexts['Historia'].slots['where']
+    - execute self.slots['municipio']=self.contexts['Historia'].slots['municipio']
+    - execute self.slots['calle']=self.contexts['Historia'].slots['calle']
+    - execute self.slots['hora']=self.contexts['Historia'].slots['hora']
+    - execute self.slots['robados']=self.contexts['Objetos_robados'].slots['robados']
+    - say "Gracias por contarme todo, ahora generare el reporte de denuncia..."
+    - genereporanoni.execute(suceso,where,municipio,calle,hora,robados)
+    - say "El reporte ya fue generado"
+   
+ 
+script:
+    - if opcion == "pub" solve publica
+    - if opcion == "anon" solve anonima
+  
+    
+  
+

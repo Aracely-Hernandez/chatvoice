@@ -1,0 +1,51 @@
+conversations:  
+        - 'reporte.yaml'
+      
+
+strategies:
+    
+    ayuda:
+        - say "Hola, estoy aqui para brindarte apoyo"
+       
+    celulars: 
+        - say "¿Te robaron tu celular?"
+        - input status | yesno
+        - if status say "busca el numero de IMEI y llama a tu provedor, di que te lo robaron y bloquealo para que no hagan mal uso de el y de tu informacion"
+        - if not ay solve carros
+
+    carros:
+        - say "¿Te robaron tu carro?"
+        - input status | yesno
+        - if status say "busca el numero de IMEI y llama a tu provedor, di que te lo robaron y bloquealo para que no hagan mal uso de el y de tu informacion"
+        - if not ay solve tarjetas
+
+    tarjetas:
+        - say "¿Te robaron tus tarjetas?"
+        - input status | yesno
+        - if status say "busca el numero de IMEI y llama a tu provedor, di que te lo robaron y bloquealo para que no hagan mal uso de el y de tu informacion"
+        - if not ay solve computadoras
+
+    computadoras:
+        - say "¿Te robaron tu celular?"
+        - input status | yesno
+        - if status say "busca el numero de IMEI y llama a tu provedor, di que te lo robaron y bloquealo para que no hagan mal uso de el y de tu informacion"
+        - if not ay solve papeles
+    
+    papeles:
+        - say "¿Te robaron documentos importantes?"
+        - input status | yesno
+        - if status say "busca el numero de IMEI y llama a tu provedor, di que te lo robaron y bloquealo para que no hagan mal uso de el y de tu informacion"
+        - if not ay solve exit
+      
+    exit:
+        - say "a continuacion se procedera a generar el reporte"
+
+
+script:
+        - solve ayuda
+        - carros
+        - tarjetas
+        - computadoras
+        - papeles
+        - exit
+        - solve reporte

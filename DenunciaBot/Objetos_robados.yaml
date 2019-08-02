@@ -1,0 +1,62 @@
+#Objetos robados
+
+conversations:
+       
+        - 'reporte.yaml'
+
+strategies:
+
+   menu:
+    - say "Cuentame que fue lo que te robaron"
+    - input robados | asign celular:cel tarjeta:tar computadora:com papeles:pa carro:car
+    - if robados == "cel" solve celular
+    - if robados == "tar" solve tarjeta
+    - if robados == "com" solve computadora
+    - if robados == "pa" solve papeles
+    - if robados == "car" solve carro
+    - empty_slot robados
+    - say "¿Te robaron algo mas?"
+    - input status | yesno
+
+   objetos:
+    - say "¿Cuentame que fue lo que te robaron?"
+    - input objetos 
+
+   celular:
+    - say "¿Que marca era tu celular?"
+    - input celular
+
+   tarjeta:
+    - say "La tarjeta era tuya?, ¿de que banco es?"
+    - input tarjeta
+
+   computadora:
+    - say "La computadora era tuya?, ¿que modelo es?"
+    - input computadora
+
+   papeles:
+    - say "¿Que papeles se llevaron?"
+    - input papeles
+
+   carro:
+    - say "El carro era tuyo?, ¿que tipo de auto era?"
+    - input car
+
+   ayudas:
+    - Say "A continuaciòn enlistare que hacer en caso de perdida de los siguientes objetos"
+    - say "celular; deberas asistir a un centro de atencion al cliente de tu compañia y que bloqueen tu equipo"
+    - say "Tarjetas; deberas acudir a tu sucursal bancaria para que tus tarjetas sean dadas de bajas y no hagan mal uso de ellas"
+    - say "Computadoras; "
+    - say "Papeles; "
+    - say "Carro; "
+    - input ayudas
+
+   fin:
+    - say "Deseas recibir asesoramiento"
+    - input status | yesno
+    - if status solve ayudas
+    - if not status solve reporte
+
+script:
+    - while status solve menu
+    - if not status solve fin

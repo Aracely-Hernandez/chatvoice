@@ -1,0 +1,24 @@
+# Conversation example for simple hello and ask a name
+settings:
+    name: DenunciaBot
+
+conversations:
+        - 'denuncia_datos.yaml'
+        - 'Historia.yaml'  
+        - 'Objetos_robados.yaml'
+        - 'Ayuda.yaml' 
+        - 'reporte.yaml' 
+strategies:
+    
+    tipoDenuncia:
+        - say "Hola, soy Denunciabot, el chatbot que recibe denuncias sobre robos"
+        - say "¿Desea realizar tu denuncia anonima o publica?"
+        - input opcion | asign anonima:anon publica:pub
+        - if opcion == "anon" solve Historia
+        - if opcion == "pub" solve denuncia_datos
+       
+script:
+        - solve tipoDenuncia
+        - solve Objetos_robados
+        - solve reporte
+        - say "Gracias por denunciar, pasaremos los datos otorgados a las autoridades correspondientes"

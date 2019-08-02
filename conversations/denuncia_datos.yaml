@@ -1,0 +1,17 @@
+strategies:
+    datos:
+        - say "¿Cual es tu nombre?"
+        - input nombre
+        - say "¿Cual es tu apellido paterno?"
+        - input ap_pat
+        - say "¿Cual es tu apellido materno?"
+        - input ap_mat
+        - say "¿Cual es tu direccion?"   
+        - input direccion
+        - say "¿Cual es tu edad?"
+        - input edad
+        - say "¿Cual es tu telefono?"
+        - input telefono
+script:
+        - solve datos
+

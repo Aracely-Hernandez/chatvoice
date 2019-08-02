@@ -1,0 +1,74 @@
+conversations:
+        - 'Historia.yaml'  
+     
+slots:
+    - nombre
+
+strategies:
+    nombre:
+        - say "¿Cual es tu nombre?"
+        - empty_slot nombre
+        - input nombre
+    apellido:
+        - say "¿Cual es tu apellido paterno?"
+        - empty_slot ap_pat
+        - input ap_pat
+    materno:
+        - say "¿Cual es tu apellido materno?"
+        - empty_slot ap_mat
+        - input ap_mat
+    direc:
+        - say "¿Cual es tu direccion?" 
+        - empty_slot direccion  
+        - input direccion
+    eda:
+        - say "¿Cual es tu edad?"
+        - empty_slot edad
+        - input edad
+    tele:
+        - say "¿Cual es tu telefono celular?"
+        - empty_slot telefono
+        - input telefono
+    creden:
+        - say "¿Cuentas con credencial de elector?"
+        - empty_slot identificacion
+        - input identificacion
+    sex:
+        - say "¿cual es tu sexo?, Femenino o Masculino"
+        - empty_slot sexo
+        - input sexo
+    ocupa:
+        - say "¿A  que te dedicas?"
+        - empty_slot ocupacion
+        - input ocupacion
+
+script:
+        - add_slot nombre
+        - set_slot nombre "ANOnima"
+        - solve nombre
+        - add_slot ap_pat
+        - set_slot ap_pat "t"
+        - solve apellido
+        - add_slot ap_mat
+        - set_slot ap_mat "w"
+        - solve materno
+        - add_slot direccion
+        - set_slot direccion "j"
+        - solve direc
+        - add_slot edad
+        - set_slot edad "p"
+        - solve eda
+        - add_slot telefono
+        - set_slot telefono "tel"
+        - solve tele
+        - add_slot identificacion
+        - set_slot identificacion "yty"
+        - solve creden
+        - add_slot sexo
+        - set_slot sexo "po"
+        - solve sex
+        - add_slot ocupacion
+        - set_slot ocupacion "pox"
+        - solve ocupa
+        - solve Historia
+

@@ -1,0 +1,23 @@
+
+strategies:
+    num_lugar:
+        - say "¿En cuantos lugares?"
+        - input num_lugar
+    lugar_puesto:
+        - say "Menciona el primer lugar y en que puesto"
+        - input lugar_puesto
+    periodo:
+        - say "¿Que periodo de tiempo estuviste?"
+        - input periodo
+    slugar_puesto:
+        - say "Menciona el segundo lugar y en que puesto"
+        - input slugar_puesto
+    speriodo:
+        - say "¿Que periodo de tiempo estuviste?"
+        - input speriodo
+script:
+    - solve num_lugar
+    - solve lugar_puesto
+    - solve periodo
+    - solve slugar_puesto
+    - solve speriodo
